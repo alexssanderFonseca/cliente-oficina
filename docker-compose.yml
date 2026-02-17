@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:15
+    container_name: cliente_db
+    restart: always
+    environment:
+      POSTGRES_DB: cliente_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5435:5432" # Use a different host port to avoid conflicts
+    volumes:
+      - cliente_postgres_data:/var/lib/postgresql/data
+    networks:
+      - cliente_network
+
+  cliente_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cliente_app
+    restart: always
+    ports:
+      - "8083:8080" # Use a different host port
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/cliente_db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - cliente_network
+
+volumes:
+  cliente_postgres_data:
+
+networks:
+  cliente_network:

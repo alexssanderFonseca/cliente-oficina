@@ -1,0 +1,36 @@
+name: CI Pipeline - Cliente
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+    paths:
+      - 'cliente/**' # Only run when changes are in the cliente directory
+
+jobs:
+  build-and-test:
+    name: Build e Testes - Cliente
+    uses: ./.github/workflows/reusable-build.yml
+    secrets: inherit
+    with:
+      working-directory: cliente/
+
+  validate-docker:
+    name: Validação Docker - Cliente
+    needs: build-and-test
+    uses: ./.github/workflows/reusable-docker.yml
+    secrets: inherit
+    with:
+      context: cliente/
+      dockerfile: cliente/Dockerfile
+
+  create-pull-request:
+    name: Criar Pull Request - Cliente
+    needs: [validate-docker]
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: ./.github/workflows/reusable-pr.yml
+    secrets: inherit
+    with:
+      branch-name: ${{ github.ref_name }}
