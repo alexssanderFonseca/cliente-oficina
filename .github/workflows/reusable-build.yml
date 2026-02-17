@@ -2,6 +2,12 @@ name: Build Phase
 
 on:
   workflow_call:
+    inputs:
+      working-directory:
+        description: 'The working directory for the build'
+        required: false
+        type: string
+        default: '.'
 
 jobs:
   build:
@@ -21,14 +27,16 @@ jobs:
 
       - name: Conceder permissão de execução ao Gradle
         run: chmod +x gradlew
+        working-directory: ${{ inputs.working-directory }}
 
       - name: Executar build completo
         run: ./gradlew clean build --no-daemon --refresh-dependencies
+        working-directory: ${{ inputs.working-directory }}
 
       - name: Upload de artefatos
         uses: actions/upload-artifact@v4
         if: success()
         with:
           name: build-artifacts
-          path: build/libs/*.jar
+          path: ${{ inputs.working-directory }}/build/libs/*.jar
           retention-days: 5
