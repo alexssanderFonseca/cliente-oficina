@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'feature/**'
-    paths:
-      - 'cliente/**' # Only run when changes are in the cliente directory
 
 jobs:
   build-and-test:

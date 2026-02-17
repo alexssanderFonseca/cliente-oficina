@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'main'
-    paths:
-      - 'cliente/**' # Only run when changes are in the cliente directory
 
 jobs:
   publish-image:
@@ -16,7 +14,6 @@ jobs:
       context: cliente/
       dockerfile: cliente/Dockerfile
       image-name: alexsdm/cliente-service # Replace with your Docker Hub username and desired image name
-    id: publish-step # Add an ID to the job to access its outputs
 
   deploy-application:
     name: Deploy da Aplicação Cliente no Kubernetes
