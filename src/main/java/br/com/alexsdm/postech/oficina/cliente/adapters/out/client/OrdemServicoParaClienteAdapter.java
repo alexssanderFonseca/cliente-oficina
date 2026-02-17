@@ -13,6 +13,7 @@ import java.util.UUID;
 public class OrdemServicoParaClienteAdapter implements ClienteOrdemServicoPort {
 
 
+
     @Override
     public List<OrdemServicoStatus> buscarStatusPorCliente(UUID clienteId) {
 
