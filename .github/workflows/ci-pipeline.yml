@@ -10,17 +10,12 @@ jobs:
     name: Build e Testes - Cliente
     uses: ./.github/workflows/reusable-build.yml
     secrets: inherit
-    with:
-      working-directory: cliente/
 
   validate-docker:
     name: Validação Docker - Cliente
     needs: build-and-test
     uses: ./.github/workflows/reusable-docker.yml
     secrets: inherit
-    with:
-      context: cliente/
-      dockerfile: cliente/Dockerfile
 
   create-pull-request:
     name: Criar Pull Request - Cliente

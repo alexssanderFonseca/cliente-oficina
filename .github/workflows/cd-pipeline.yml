@@ -11,8 +11,6 @@ jobs:
     uses: ./.github/workflows/reusable-publish-docker.yml
     secrets: inherit
     with:
-      context: cliente/
-      dockerfile: cliente/Dockerfile
       image-name: alexsdm/cliente-service # Replace with your Docker Hub username and desired image name
 
   deploy-application:
@@ -23,7 +21,7 @@ jobs:
       image-tag: ${{ needs.publish-image.outputs.image-tag }}
       environment: producao # Or any other environment you target
       app-name: cliente-app # Name used in Kustomize for image replacement
-      k8s-overlay-path: cliente/k8s/overlays/${{ inputs.environment }} # Path to the kustomize overlay for cliente
+      k8s-overlay-path: k8s/overlays/${{ inputs.environment }} # Path to the kustomize overlay for cliente
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
