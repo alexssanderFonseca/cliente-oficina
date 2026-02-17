@@ -3,6 +3,11 @@ name: Reusable - Publish Docker Image
 
 on:
   workflow_call:
+    inputs:
+      image-name:
+        description: 'The name of the Docker image to publish (e.g., username/repo-name)'
+        required: true
+        type: string
 
 jobs:
   build-and-push:
@@ -28,7 +33,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
+          images: ${{ inputs.image-name }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix=,format=short

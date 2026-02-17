@@ -5,13 +5,17 @@ on:
     branches:
       - 'main'
 
+permissions:
+  packages: write
+  contents: read
+
 jobs:
   publish-image:
     name: Publicar Imagem Cliente no Docker Hub
     uses: ./.github/workflows/reusable-publish-docker.yml
     secrets: inherit
     with:
-      image-name: alexsdm/cliente-service # Replace with your Docker Hub username and desired image name
+      image-name: alexmarquesfa/clienteoficina # Replace with your Docker Hub username and desired image name
 
   deploy-application:
     name: Deploy da Aplicação Cliente no Kubernetes
