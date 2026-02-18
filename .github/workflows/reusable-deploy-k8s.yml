@@ -69,12 +69,8 @@ jobs:
 
       - name: Substituir IMAGE_TAG no Deployment
         run: |
-          echo "Current working directory before kustomize command:"
-          pwd
-          echo "Contents of current working directory before kustomize command:"
-          ls -la .
-          echo "Attempting kustomize edit set image on path: ${{ inputs.k8s-overlay-path }}"
-          kustomize edit set image ${{ inputs.app-name }}=${{ secrets.DOCKER_USERNAME }}/${{ inputs.app-name }}:${{ inputs.image-tag }} --kustomization ${{ inputs.k8s-overlay-path }}
+          kustomize edit set image ${{ inputs.app-name }}=${{ secrets.DOCKER_USERNAME }}/${{ inputs.app-name }}:${{ inputs.image-tag }}
+        working-directory: ${{ inputs.k8s-overlay-path }}
 
       - name: Aplicar Kustomize e Injetar Segredos
         run: |
