@@ -11,5 +11,5 @@ kind: ConfigMap
 metadata:
   name: cliente-app-config
 data:
-  SPRING_DATASOURCE_USERNAME: "userClienteDb"
+  SPRING_DATASOURCE_USERNAME: "userOficinaDb"
   ENV_NAME: "local"
