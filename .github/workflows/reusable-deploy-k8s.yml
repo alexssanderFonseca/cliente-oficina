@@ -69,6 +69,10 @@ jobs:
 
       - name: Substituir IMAGE_TAG no Deployment
         run: |
+          echo "DEBUG: Current working directory for this step (should be k8s-overlay-path):"
+          pwd
+          echo "DEBUG: Contents of this step's working directory:"
+          ls -la .
           kustomize edit set image ${{ inputs.app-name }}=${{ secrets.DOCKER_USERNAME }}/${{ inputs.app-name }}:${{ inputs.image-tag }}
         working-directory: ${{ inputs.k8s-overlay-path }}
 
