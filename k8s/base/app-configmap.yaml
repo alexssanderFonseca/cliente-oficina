@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: postgres-config
 data:
-  POSTGRES_DB: "cliente_db"
-  POSTGRES_USER: "userClienteDb"
+  POSTGRES_DB: "oficinadb"
+  POSTGRES_USER: "userOficinaDb"
 ---
 apiVersion: v1
 kind: ConfigMap
