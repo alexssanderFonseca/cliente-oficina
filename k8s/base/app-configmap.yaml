@@ -11,6 +11,5 @@ kind: ConfigMap
 metadata:
   name: cliente-app-config
 data:
-  SPRING_DATASOURCE_URL: "jdbc:postgresql://academico-rds.cpu6wek2azm8.us-east-1.rds.amazonaws.com:5432/cliente_db"
   SPRING_DATASOURCE_USERNAME: "userClienteDb"
   ENV_NAME: "local"
