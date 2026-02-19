@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: cliente-app-config
 data:
-  ENV_NAME: "producao"
+  ENV_NAME: "prod"
 
