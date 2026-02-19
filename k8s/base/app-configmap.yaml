@@ -4,3 +4,4 @@ metadata:
   name: cliente-app-config
 data:
   ENV_NAME: "local"
+  SPRING_DATASOURCE_USERNAME: userOficinaDb
