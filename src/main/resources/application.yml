@@ -30,18 +30,14 @@ otel:
     name: oficina
     resource:
       attributes:
-        environment: ${OTEL_ENVIRONMENT}
-        version: ${OTEL_VERSION}
         team: backend
 
   traces:
     exporter: otlp
-    endpoint: ${OTEL_ENDPOINT}
     sampler: always_on
 
   metrics:
     exporter: otlp
-    endpoint: ${OTEL_ENDPOINT}
 
   logs:
     exporter: none
