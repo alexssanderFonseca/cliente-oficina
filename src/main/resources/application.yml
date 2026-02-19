@@ -27,7 +27,7 @@ jwt:
 
 otel:
   service:
-    name: oficina
+    name: ${OTEL_SERVICE_NAME:cliente}
     resource:
       attributes:
         team: backend
