@@ -94,9 +94,25 @@ tasks.jacocoTestReport {
     dependsOn(tasks.test)
     reports {
         xml.required.set(true)
-        html.required.set(false)
-        csv.required.set(false)
+        html.required.set(true)
     }
+    classDirectories.setFrom(
+        sourceSets["main"].output.classesDirs.map {
+            fileTree(it).matching {
+                exclude(
+                    "**/common/**",
+                    "**/entity/**",
+                    "**/exception/**",
+                    "**/usecase/input/**",
+                    "**/usecase/output/**",
+                    "**/*Application*",
+                    "**/*Config*",
+                    "**/*DTO*",
+                    "**/*Output*"
+                )
+            }
+        }
+    )
 }
 
 sonar {
