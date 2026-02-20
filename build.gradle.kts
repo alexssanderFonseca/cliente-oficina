@@ -95,22 +95,22 @@ tasks.jacocoTestReport {
     reports {
         xml.required.set(true)
         html.required.set(true)
-        csv.required.set(false)
     }
     classDirectories.setFrom(
-        sourceSets.main.get().output.asFileTree.matching {
-            exclude(
-                "**/entity/**",
-                "**/dto/**",
-                "**/request/**",
-                "**/response/**",
-                "**/config/**",
-                "**/exception/**",
-                "**/mapper/**",
-                "**/common/**",
-                "**/*Application*",
-                "**/*MapperImpl*"
-            )
+        sourceSets["main"].output.classesDirs.map {
+            fileTree(it).matching {
+                exclude(
+                    "**/common/**",
+                    "**/entity/**",
+                    "**/exception/**",
+                    "**/usecase/input/**",
+                    "**/usecase/output/**",
+                    "**/*Application*",
+                    "**/*Config*",
+                    "**/*DTO*",
+                    "**/*Output*"
+                )
+            }
         }
     )
 }
