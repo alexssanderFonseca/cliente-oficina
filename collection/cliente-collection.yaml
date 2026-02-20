@@ -1,0 +1,191 @@
+type: collection.insomnia.rest/5.0
+name: Oficina Cliente Service
+meta:
+  id: wrk_c36e9e09b1b940989d26deaf65a943cd
+  created: 1771329881920
+  modified: 1771329881920
+collection:
+  - name: Clientes
+    meta:
+      id: fld_fec1de1b610f44b795bb9a449f64c5bb
+      created: 1676523000000
+      modified: 1676523000000
+      sortKey: -1771329881927
+    children:
+      - url: "{{ _.base_url }}/clientes"
+        name: Cadastrar Cliente
+        meta:
+          id: req_21f7a3e5fed2479ba89b7dc047fd7979
+          created: 1676523000000
+          modified: 1771536018582
+          isPrivate: false
+          description: Cadastra um novo cliente
+          sortKey: -1771329881928
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "João",
+              "sobrenome": "Silva",
+              "cpfCnpj": "13503143661",
+              "email": "joao.silva@example.com",
+              "telefone": "+5511987654321",
+              "endereco": {
+                "rua": "Rua Exemplo",
+                "numero": "123",
+                "bairro": "Centro",
+                "cidade": "São Paulo",
+                "cep": "01000-000",
+                "uf": "SP"
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/clientes/{{ _.cliente_id }}"
+        name: Deletar Cliente por ID
+        meta:
+          id: req_6ee0cfbeb1c34250ba05a4df78437e1a
+          created: 1676523000000
+          modified: 1676523000000
+          isPrivate: false
+          description: Deleta um cliente por ID
+          sortKey: -1771329881930
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/clientes/{{ _.cliente_id }}"
+        name: Atualizar Cliente
+        meta:
+          id: req_c667d1b8c07a4898a4d8c88f455d93ae
+          created: 1676523000000
+          modified: 1676523000000
+          isPrivate: false
+          description: Atualiza os dados de um cliente
+          sortKey: -1771329881931
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "novo.email@example.com",
+              "telefone": "+5511998877665",
+              "endereco": {
+                "rua": "Nova Rua",
+                "numero": "456",
+                "bairro": "Nova Cidade",
+                "cidade": "Rio de Janeiro",
+                "cep": "20000-000",
+                "uf": "RJ"
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/clientes/{{ _.cliente_id }}/ordensServicos"
+        name: Status Ordens de Serviço do Cliente
+        meta:
+          id: req_da3f551f8a9f43cba24bf7f42141bccf
+          created: 1676523000000
+          modified: 1676523000000
+          isPrivate: false
+          description: Lista o status de todas as ordens de serviço de um cliente
+          sortKey: -1771329881932
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/clientes/{{ _.cliente_id }}/veiculos"
+        name: Adicionar Veículo ao Cliente
+        meta:
+          id: req_db2dc326a9d34ea3b6e74341701d529e
+          created: 1676523000000
+          modified: 1771536386227
+          isPrivate: false
+          description: Adiciona um veículo a um cliente existente
+          sortKey: -1771329881929
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "placa": "ABC1234",
+              "cor": "Prata",
+              "marca": "Fiat",
+              "modelo": "Uno",
+              "ano": "2015"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/clientes/{{ _.cliente_id }}"
+        name: Buscar Cliente por ID
+        meta:
+          id: req_f91c8e37b538447391f912fad5f11c91
+          created: 1676523000000
+          modified: 1676523000000
+          isPrivate: false
+          description: Busca um cliente por ID
+          sortKey: -1771329881930
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_0d58b1bc2871f98d3e39c048825023451f0c7853
+    created: 1771329881934
+    modified: 1771329881934
+environments:
+  name: Base Environment
+  meta:
+    id: env_ad21692f799e4214a88277ba369b040f
+    created: 1676523000000
+    modified: 1771519552556
+    isPrivate: false
+  data:
+    base_url: https://ibxnp2iz65.execute-api.us-east-1.amazonaws.com/dev
+    cliente_id: "{% response 'body', 'req_21f7a3e5fed2479ba89b7dc047fd7979',
+      'b64::JC5pZA==::46b', 'never', 60 %}"
