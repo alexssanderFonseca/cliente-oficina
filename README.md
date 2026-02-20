@@ -194,5 +194,13 @@ Essa estrutura garante que o núcleo da aplicação permaneça isolado e testáv
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](../../LICENSE) para mais detalhes.
 
 
-## Arquitetura
-Você pode visualizar o desenho de arquitetura do sistema aqui: [Desenho de Arquitetura AWS](docs/aws.html)
+---
+
+## 🏗️ Arquitetura do Sistema
+
+Abaixo está o desenho da arquitetura da solução baseada em AWS EKS:
+
+![Arquitetura AWS](docs/arquitetura.png)
+
+> Você também pode visualizar a versão original em HTML aqui: [Desenho de Arquitetura AWS](docs/aws.html)
+
